@@ -22,7 +22,7 @@ The excel dataset was obtained from Kaggle. It consists of 1000 rows and 9 colum
 - 'dim_products' is a dimension table that contains product details such product ID and product category
 - 'dim_dates' is a dimension table that contains date_id, full date, day, month, year, quarter, month name, and week day
 - 'fact_sales' is a facts table that contains transaction ID, date ID, product ID, customer ID, quantity, price per unit, and total amount.
-
+![](images/ER.png)
 
 To view the initial Excel dataset, click [here](https://github.com/mmustee/Retail-Sales-Analysis/tree/main/dataset)
 ## Support
