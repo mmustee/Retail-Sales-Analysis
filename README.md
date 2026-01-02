@@ -7,7 +7,7 @@
 
 ## Introduction
 
-In this project, I conducted a transactional sales analysis with an excel dataset sourced from Kaggle using SQL. 
+In this project, I conducted a transactional sales analysis with an excel dataset sourced from Kaggle using SQL
 
 ### Objectives
 The objectives of this project are as follows:
