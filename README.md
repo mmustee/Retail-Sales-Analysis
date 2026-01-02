@@ -17,7 +17,7 @@ The objectives of this project are as follows:
 - Present data-driven insights
 
 ## Dataset
-The excel dataset was obtained from Kaggle. It consists of 1000 rows and 9 columns. In order to make use of the dataset, an ETL process has to take place from Excel to SQL Server Management Studion(SSMS). To view the initial Excel dataset, click ![](/dataset/retail_sales_dataset.csv)
+The excel dataset was obtained from Kaggle. It consists of 1000 rows and 9 columns. In order to make use of the dataset, an ETL process has to take place from Excel to SQL Server Management Studion(SSMS). To view the initial Excel dataset, click ![](dataset/retail_sales_dataset.csv)
 ## Support
 
 If you have any queries, or suggestions, please connect with me on [LinkedIn](https://www.linkedin.com/in/mohammed-mustapha-ahmed-597a9a82/)
