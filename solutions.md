@@ -46,4 +46,19 @@ ORDER BY total_revenue DESC
 product_category | total_revenue |
 --| --|
 Electronics | 156905.00 |
+
 5. Which product category has the highest average price per unit?
+
+```sql
+SELECT TOP 1
+p.product_category, ROUND(AVG(s.price_per_unit),2) as avg_price_per_unit
+FROM fact_sales s JOIN dim_products p
+ON s.product_id = p.product_id
+GROUP by p.product_category
+ORDER by avg_price_per_unit DESC
+```
+**Result Set:**
+
+product_category | avg_price_per_unit |
+--| --|
+Beauty | 184.060000 |
