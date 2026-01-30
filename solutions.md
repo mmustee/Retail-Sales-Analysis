@@ -92,6 +92,19 @@ month | month_name | year | total_revenue |
 1  | January   | 2024 | 1530.00  |
 
 2. Which month had the highest sales revenue?
+```sql
+SELECT TOP 1 
+ d.month_name, d.year,  SUM(s.total_amount) as total_revenue
+FROM fact_sales s 
+JOIN dim_dates d ON d.date_id = s.date_id
+GROUP BY d.month_name, d.year
+ORDER BY total_revenue DESC
+```
+**Result Set:**
+
+month_name | year | total_revenue |
+--| --| --|
+May | 2023 | 53150.00 |
 
 3. What is the month-over-month revenue growth percentage?
 
