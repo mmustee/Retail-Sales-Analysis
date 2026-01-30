@@ -140,6 +140,7 @@ FROM mom
 **Result Set:**
 
 year | month | month_name | revenue | previous_revenue | mom_growth_percentage
+--| --| -- |-- | -- | -- |
 2023 | 1  | January   | 35450.00 | NULL     | NULL       |
 2023 | 2  | February  | 44060.00 | 35450.00 | 24.290000  |
 2023 | 3  | March     | 28990.00 | 44060.00 | -34.200000 |
