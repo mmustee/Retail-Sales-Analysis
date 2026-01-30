@@ -107,6 +107,52 @@ month_name | year | total_revenue |
 May | 2023 | 53150.00 |
 
 3. What is the month-over-month revenue growth percentage?
+```sql
+WITH monthly_revenue AS(
+	SELECT d.year, d.month, d.month_name, SUM(s.total_amount) as revenue
+	FROM fact_sales s JOIN dim_dates d
+	ON s.date_id = d.date_id
+	GROUP BY d.year, d.month, d.month_name
+),
+
+mom AS(
+		SELECT year,
+			   month, 
+			   month_name, 
+			   revenue,
+			   LAG(revenue) OVER (ORDER BY year, month) as previous_revenue
+		FROM monthly_revenue
+		)
+
+SELECT year,
+	   month, 
+	   month_name, 
+	   revenue, 
+	   previous_revenue, 
+		CASE 
+			WHEN previous_revenue is NULL or previous_revenue = 0 THEN NULL
+			ELSE ROUND((revenue - previous_revenue) * 100 / previous_revenue, 2)
+		END as mom_growth_percentage
+FROM mom
+
+
+```
+**Result Set:**
+
+year | month | month_name | revenue | previous_revenue | mom_growth_percentage
+2023 | 1  | January   | 35450.00 | NULL     | NULL       |
+2023 | 2  | February  | 44060.00 | 35450.00 | 24.290000  |
+2023 | 3  | March     | 28990.00 | 44060.00 | -34.200000 |
+2023 | 4  | April     | 33870.00 | 28990.00 | 16.830000  |
+2023 | 5  | May       | 53150.00 | 33870.00 | 56.920000  |
+2023 | 6  | June      | 36715.00 | 53150.00 | -30.920000 |
+2023 | 7  | July      | 35465.00 | 36715.00 | -3.400000  |
+2023 | 8  | August    | 36960.00 | 35465.00 | 4.220000   |
+2023 | 9  | September | 23620.00 | 36960.00 | -36.090000 |
+2023 | 10 | October   | 46580.00 | 23620.00 | 97.210000  |
+2023 | 11 | November  | 34920.00 | 46580.00 | -25.030000 |
+2023 | 12 | December  | 44690.00 | 34920.00 | 27.980000  |
+2024 | 1  | January   | 1530.00  | 44690.00 | -96.580000 |
 
 4. What is the quarterly sales trend?
 
