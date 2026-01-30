@@ -156,6 +156,21 @@ year | month | month_name | revenue | previous_revenue | mom_growth_percentage
 2024 | 1  | January   | 1530.00  | 44690.00 | -96.580000 |
 
 4. What is the quarterly sales trend?
+```sql
+SELECT d.year, d.quarter, SUM(s.total_amount) as total_revenue
+FROM fact_sales s
+JOIN dim_dates d ON s.date_id = d.date_id
+GROUP BY d.year, d.quarter
+
+```
+**Result Set:**
+year | month | month_name |
+--| --| -- |
+2023 | 1 | 108500.00 |
+2023 | 4 | 126190.00 |
+2023 | 2 | 123735.00 |
+2023 | 3 | 96045.00  |
+2024 | 1 | 1530.00   |
 
 5. Are there any seasonal patterns in sales?
 
