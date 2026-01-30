@@ -161,19 +161,40 @@ SELECT d.year, d.quarter, SUM(s.total_amount) as total_revenue
 FROM fact_sales s
 JOIN dim_dates d ON s.date_id = d.date_id
 GROUP BY d.year, d.quarter
+ORDER BY d.year, d.quarter
+
 
 ```
 **Result Set:**
 year | quarter | total_revenue |
 --| --| -- |
 2023 | 1 | 108500.00 |
-2023 | 4 | 126190.00 |
 2023 | 2 | 123735.00 |
 2023 | 3 | 96045.00  |
+2023 | 4 | 126190.00 |
 2024 | 1 | 1530.00   |
 
 5. Are there any seasonal patterns in sales?
+```sql
+SELECT d.year, d.quarter, SUM(s.total_amount) as total_revenue
+FROM fact_sales s
+JOIN dim_dates d ON s.date_id = d.date_id
+GROUP BY d.year, d.quarter
+ORDER BY d.year, d.quarter
 
+
+```
+year | quarter | total_revenue |
+--| --| -- |
+2023 | 1 | 108500.00 |
+2023 | 2 | 123735.00 |
+2023 | 3 | 96045.00  |
+2023 | 4 | 126190.00 |
+2024 | 1 | 1530.00   |
+
+### Seasonal Patterns
+
+- Sales display moderate seasonality, with sales peaking at the end of the year at Q4 and plumetting at midway through the year at Q2. This displays an increase in demand of customers towards the end of the year, likey due to the holiday expenditure. Nevertheless, there does not seem to be a regular seasonal trend between months or quarters which means that seasonal changes do not significantly influence sales.
 # Customer Analytics
 
 1. How many unique customers have made purchases?
