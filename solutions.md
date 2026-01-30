@@ -164,7 +164,7 @@ GROUP BY d.year, d.quarter
 
 ```
 **Result Set:**
-year | month | month_name |
+year | quarter | total_revenue |
 --| --| -- |
 2023 | 1 | 108500.00 |
 2023 | 4 | 126190.00 |
