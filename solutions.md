@@ -184,6 +184,7 @@ ORDER BY d.year, d.quarter
 
 
 ```
+**Result Set:**
 year | quarter | total_revenue |
 --| --| -- |
 2023 | 1 | 108500.00 |
@@ -198,6 +199,13 @@ year | quarter | total_revenue |
 # Customer Analytics
 
 1. How many unique customers have made purchases?
+```sql
+SELECT DISTINCT COUNT(customer_id) as num_of_unique_customers FROM dim_customers;
+```
+**Result Set:**
+num_of_unique_customers |
+ -- |
+1000 |
 
 2. What is the average revenue per customer?
 
