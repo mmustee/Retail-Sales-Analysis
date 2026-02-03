@@ -255,6 +255,19 @@ product_category | quantity |
 Clothing | 894
 
 2. What is the average transaction value per product category?
+```sql
+SELECT p.product_category, ROUND(AVG(s.total_amount),2) as avg_transaction_value
+FROM fact_sales s 
+JOIN dim_products p
+ON p.product_id = s.product_id
+GROUP BY product_category
+```
+**Result Set:**
+product_category | avg_transaction_value |
+-- |  -- |
+Beauty      | 467.48 |
+Clothing    | 443.25 |
+Electronics | 458.79 |
 
 3. Which product categories sell most frequently but at lower revenue?
 
