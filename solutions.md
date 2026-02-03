@@ -207,7 +207,20 @@ num_of_unique_customers |
  -- |
 1000 |
 
-2. What is the average revenue per customer?
+2. What is the top 5 average revenue per customer?
+```sql
+SELECT top 5 customer_id, ROUND(AVG(total_amount),2) as average_revenue
+FROM fact_sales
+GROUP BY customer_id
+ORDER BY average_revenue DESC
+```
+**Result Set:**
+customer_id | average_revenue |
+CUST015 | 2000.000000 |
+CUST065 | 2000.000000 |
+CUST072 | 2000.000000 |
+CUST074 | 2000.000000 |
+CUST089 | 2000.000000 |
 
 3. Which customers have the highest lifetime value?
 
