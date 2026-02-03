@@ -216,6 +216,7 @@ ORDER BY average_revenue DESC
 ```
 **Result Set:**
 customer_id | average_revenue |
+ -- |  -- |
 CUST015 | 2000.000000 |
 CUST065 | 2000.000000 |
 CUST072 | 2000.000000 |
