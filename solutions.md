@@ -280,7 +280,7 @@ GROUP BY product_category
 ```
 **Result Set:**
 product_category | frequency | revenue |
--- |  -- |
+-- |  -- | --|
 Beauty      | 307 | 143515.00 |
 Clothing    | 351 | 155580.00 |
 Electronics | 342 | 156905.00 |
