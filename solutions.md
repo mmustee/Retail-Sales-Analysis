@@ -223,23 +223,42 @@ CUST072 | 2000.000000 |
 CUST074 | 2000.000000 |
 CUST089 | 2000.000000 |
 
-3. Which customers have the highest lifetime value?
+3. Which age group generates the most revenue?
+```sql
+SELECT top 1 c.age_group, SUM(s.total_amount) as total_revenue 
+FROM fact_sales s
+JOIN dim_customers c 
+ON c.customer_id = s.customer_id
+GROUP BY age_group, s.total_amount
+ORDER BY total_revenue DESC
 
-4. What percentage of customers are repeat buyers?
-
-5. Which age group generates the most revenue?
-
+```
+**Result Set:**
+age_group| total_revenue |
+-- |  -- |
+46-60 | 25500.00 |
 # Product Performance
 
-1. Which products have the highest sales volume?
+1. Which product categories have the highest order quantities?
+```sql
+SELECT TOP 1 p.product_category, SUM(s.quantity) as quantity
+FROM fact_sales s 
+JOIN dim_products p 
+ON p.product_id = s.product_id
+GROUP BY p.product_category
+ORDER BY quantity DESC
+```
 
-2. Which product categories have the highest order quantities?
+**Result Set:**
+product_category | quantity |
+-- |  -- |
+Clothing | 894
 
-3. What is the average transaction value per product category?
+2. What is the average transaction value per product category?
 
-4. Which product categories sell most frequently but at lower revenue?
+3. Which product categories sell most frequently but at lower revenue?
 
-5. Rank product categories by revenue contribution.
+4. Rank product categories by revenue contribution.
 
 # Advanced SQL / Window Function Focus
 
