@@ -270,6 +270,20 @@ Clothing    | 443.25 |
 Electronics | 458.79 |
 
 3. Which product categories sell most frequently but at lower revenue?
+```sql
+SELECT p.product_category, COUNT(s.transaction_id) as frequency, SUM(s.total_amount) as revenue
+FROM fact_sales s 
+JOIN dim_products p 
+On p.product_id = s.product_id
+GROUP BY product_category
+
+```
+**Result Set:**
+product_category | frequency | revenue |
+-- |  -- |
+Beauty      | 307 | 143515.00 |
+Clothing    | 351 | 155580.00 |
+Electronics | 342 | 156905.00 |
 
 4. Rank product categories by revenue contribution.
 
