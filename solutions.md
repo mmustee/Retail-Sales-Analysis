@@ -498,7 +498,27 @@ total_customers |top20pct_customers | top_20pct_revenue |total_revenue | top_20p
 1000 | 200 | 284800.00 | 456000.00 | 62.460000 |
 
 
-3. Which product category should be prioritized for marketing?
+2. Which product category should be prioritized for marketing?
+```sql
+SELECT
+    p.product_category,
+    SUM(f.total_amount) AS total_revenue,
+    COUNT(f.transaction_id) AS transaction_count,
+    SUM(f.quantity) AS units_sold,
+    ROUND(AVG(f.total_amount), 2) AS avg_order_value,
+    ROUND(AVG(f.price_per_unit), 2) AS avg_unit_price
+FROM dbo.fact_sales f
+JOIN dbo.dim_products p
+    ON f.product_id = p.product_id
+GROUP BY p.product_category
+ORDER BY total_revenue DESC;
+```
+**Result Set:**
+product_category |total_revenue | transaction_count |units_sold | avg_order_value | avg_unit_price
+-- |  -- | --| --| --| --|
+Electronics | 156905.00 | 342 | 849 | 458.790000 | 181.900000 |
+Clothing    | 155580.00 | 351 | 894 | 443.250000 | 174.290000 |
+Beauty      | 143515.00 | 307 | 771 | 467.480000 | 184.060000 |
 
 4. Which age group has the highest repeat purchase rate?
 
