@@ -438,8 +438,8 @@ ORDER BY year, month, category_rank, product_category
                            
 ```
 **Result Set:**
- month |month_name | year |product_category | monthly_quantity_sold | category_rank
--- |  -- | --| --| --| --|
+ month | month_name | year |product_category | monthly_quantity_sold | category_rank
+-- |  -- | -- | -- | -- | -- |
 1  | January   | 2023 | Clothing    | 72  | 1 |
 2  | February  | 2023 | Clothing    | 75  | 1 |
 3  | March     | 2023 | Clothing    | 111 | 1 |
@@ -494,7 +494,7 @@ FROM totals;
 ```
 **Result Set:**
 total_customers |top20pct_customers | top_20pct_revenue |total_revenue | top_20pct_revenue_pct |
--- |  -- | --| --| --| --|
+-- |  -- | --| --| --| 
 1000 | 200 | 284800.00 | 456000.00 | 62.460000 |
 
 
