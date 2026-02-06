@@ -493,7 +493,7 @@ FROM totals;
                            
 ```
 **Result Set:**
-total_customers |top20pct_customers | top_20pct_revenue |total_revenue | 
+total_customers |top20pct_customers | top_20pct_revenue |total_revenue | top_20pct_revenue_pct |
 -- |  -- | --| --| --| --|
 1000 | 200 | 284800.00 | 456000.00 | 62.460000 |
 
