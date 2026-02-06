@@ -459,8 +459,44 @@ ORDER BY year, month, category_rank, product_category
 # Business Insight Questions
 
 1. What percentage of total revenue comes from the top 20% of customers?
+```sql
 
-2. Identify customers who have not purchased in the last 3 months.
+ranked AS (
+    SELECT
+        customer_id,
+        revenue,
+        ROW_NUMBER() OVER (ORDER BY revenue DESC) AS rn,
+        COUNT(*) OVER () AS total_customers
+    FROM customer_revenue
+),
+top20 AS (
+    SELECT
+        *,
+        CEILING(total_customers * 0.2) AS top_n
+    FROM ranked
+),
+totals AS (
+    SELECT
+        (SELECT SUM(revenue) FROM customer_revenue) AS total_revenue,
+        (SELECT SUM(revenue) FROM top20 WHERE rn <= top_n) AS top_20pct_revenue,
+        (SELECT MAX(total_customers) FROM ranked) AS total_customers,
+        (SELECT MAX(top_n) FROM top20) AS top_20pct_customers
+)
+SELECT
+    total_customers,
+    top_20pct_customers,
+    top_20pct_revenue,
+    total_revenue,
+    ROUND(top_20pct_revenue * 100.0 / NULLIF(total_revenue, 0), 2) AS top_20pct_revenue_pct
+FROM totals;
+
+                           
+```
+**Result Set:**
+total_customers |top20pct_customers | top_20pct_revenue |total_revenue | 
+-- |  -- | --| --| --| --|
+1000 | 200 | 284800.00 | 456000.00 | 62.460000 |
+
 
 3. Which product category should be prioritized for marketing?
 
