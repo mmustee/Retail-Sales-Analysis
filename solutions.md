@@ -286,18 +286,175 @@ Clothing    | 351 | 155580.00 |
 Electronics | 342 | 156905.00 |
 
 4. Rank product categories by revenue contribution.
+```sql
+WITH category_revenue AS (
+    SELECT
+        p.product_category,
+        SUM(s.total_amount) AS revenue
+    FROM dbo.fact_sales s
+    JOIN dbo.dim_products p
+        ON p.product_id = s.product_id
+    GROUP BY p.product_category
+)
+SELECT
+    product_category,
+    revenue,
+    RANK() OVER (ORDER BY revenue DESC) AS product_category_rank
+FROM category_revenue
+ORDER BY product_category_rank;
+
+```
+**Result Set:**
+product_category | revenue | product_category_rank |
+-- |  -- | --|
+Electronics | 156905.00 | 1
+Clothing | 155580.00 | 2
+Beauty | 143515.00 | 3
 
 # Advanced SQL / Window Function Focus
 
-1.Rank customers by lifetime value.
+1.Rank top 5 customers by lifetime value.
+```sql
+WITH category_revenue AS (
+    SELECT
+        p.product_category,
+        SUM(s.total_amount) AS revenue
+    FROM dbo.fact_sales s
+    JOIN dbo.dim_products p
+        ON p.product_id = s.product_id
+    GROUP BY p.product_category
+)
+SELECT
+    product_category,
+    revenue,
+    RANK() OVER (ORDER BY revenue DESC) AS product_category_rank
+FROM category_revenue
+ORDER BY product_category_rank;
+
+```
+**Result Set:**
+product_category | revenue | product_category_rank |
+-- |  -- | --|
+Electronics | 156905.00 | 1
+Clothing | 155580.00 | 2
+Beauty | 143515.00 | 3
 
 2. Compute cumulative revenue over time.
+```sql
+WITH monthly_revenue AS(
+SELECT  d.month_name, d.month,d.year, SUM(s.total_amount) as revenue
+FROM fact_sales s 
+JOIN dim_dates d 
+ON d.date_id = s.date_id
+GROUP BY d.year, d.month_name, d.month
+)
+
+SELECT month_name, month, year, revenue,
+SUM(revenue) OVER (ORDER BY year, month
+ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_revenue
+
+
+
+FROM monthly_revenue
+ORDER BY year, month;
+                           
+```                                                                          
+**Result Set:**
+month_name | month| year | revenue | cumulative_revenue
+-- |  -- | --| --| --|
+January   | 1  | 2023 | 35450.00 | 35450.00  |
+February  | 2  | 2023 | 44060.00 | 79510.00  |
+March     | 3  | 2023 | 28990.00 | 108500.00 |
+April     | 4  | 2023 | 33870.00 | 142370.00 |
+May       | 5  | 2023 | 53150.00 | 195520.00 |
+June      | 6  | 2023 | 36715.00 | 232235.00 |
+July      | 7  | 2023 | 35465.00 | 267700.00 |
+August    | 8  | 2023 | 36960.00 | 304660.00 |
+September | 9  | 2023 | 23620.00 | 328280.00 |
+October   | 10 | 2023 | 46580.00 | 374860.00 |
+November  | 11 | 2023 | 34920.00 | 409780.00 |
+December  | 12 | 2023 | 44690.00 | 454470.00 |
+January   | 1  | 2024 | 1530.00  | 456000.00 |
 
 3. Compute running monthly revenue totals.
+```sql
+WITH monthly_revenue AS(
+SELECT  d.month_name, d.month,d.year, SUM(s.total_amount) as revenue
+FROM fact_sales s 
+JOIN dim_dates d 
+ON d.date_id = s.date_id
+GROUP BY d.year, d.month_name, d.month
+)
 
-4. Identify top 5 customers per month.
+SELECT month_name, month, year, revenue,
+SUM(revenue) OVER (ORDER BY year, month
+ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) AS rolling_3_month_revenue
 
-5. Identify top-selling product category per month.
+
+
+FROM monthly_revenue
+ORDER BY year, month;
+                           
+```
+**Result Set:**
+month_name | month| year | revenue | cumulative_revenue
+-- |  -- | --| --| --|
+January   | 1  | 2023 | 35450.00 | 35450.00  |
+February  | 2  | 2023 | 44060.00 | 79510.00  |
+March     | 3  | 2023 | 28990.00 | 108500.00 |
+April     | 4  | 2023 | 33870.00 | 106920.00 |
+May       | 5  | 2023 | 53150.00 | 116010.00 |
+June      | 6  | 2023 | 36715.00 | 123735.00 |
+July      | 7  | 2023 | 35465.00 | 125330.00 |
+August    | 8  | 2023 | 36960.00 | 109140.00 |
+September | 9  | 2023 | 23620.00 | 96045.00  |
+October   | 10 | 2023 | 46580.00 | 107160.00 |
+November  | 11 | 2023 | 34920.00 | 105120.00 |
+December  | 12 | 2023 | 44690.00 | 126190.00 |
+January   | 1  | 2024 | 1530.00  | 81140.00  |
+
+4. Identify top-selling product category per month.
+```sql
+WITH product_monthly_revenue AS(
+SELECT d.month, d.month_name, d.year, p.product_category, SUM(s.quantity) as monthly_quantity_sold
+FROM fact_sales s 
+JOIN dim_products p 
+ON p.product_id = s.product_id
+JOIN dim_dates d
+ON d.date_id = s.date_id
+GROUP BY d.year, d.month, d.month_name,  p.product_category
+),
+
+ranked_category AS(
+SELECT month, month_name, year, product_category, monthly_quantity_sold,
+DENSE_RANK() OVER (PARTITION BY year, month ORDER BY monthly_quantity_sold DESC) AS category_rank
+FROM product_monthly_revenue
+)
+
+SELECT month, month_name, year, product_category, monthly_quantity_sold, category_rank
+FROM ranked_category
+WHERE category_rank =1
+ORDER BY year, month, category_rank, product_category
+                           
+```
+**Result Set:**
+ month |month_name | year |product_category | monthly_quantity_sold | category_rank
+-- |  -- | --| --| --| --|
+1  | January   | 2023 | Clothing    | 72  | 1 |
+2  | February  | 2023 | Clothing    | 75  | 1 |
+3  | March     | 2023 | Clothing    | 111 | 1 |
+4  | April     | 2023 | Clothing    | 93  | 1 |
+5  | May       | 2023 | Clothing    | 97  | 1 |
+5  | May       | 2023 | Electronics | 97  | 1 |
+6  | June      | 2023 | Clothing    | 67  | 1 |
+7  | July      | 2023 | Beauty      | 70  | 1 |
+8  | August    | 2023 | Electronics | 87  | 1 |
+9  | September | 2023 | Clothing    | 60  | 1 |
+9  | September | 2023 | Electronics | 60  | 1 |
+10 | October   | 2023 | Electronics | 95  | 1 |
+11 | November  | 2023 | Electronics | 73  | 1 |
+12 | December  | 2023 | Electronics | 92  | 1 |
+1  | January   | 2024 | Beauty      | 3   | 1 |
 
 # Business Insight Questions
 
