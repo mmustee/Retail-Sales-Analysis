@@ -27,17 +27,11 @@
 
 1.How many unique customers have made purchases?
 
-2. What is the average revenue per customer?
+2. What is the top 5 average revenue per customer?
 
-3. Which customers have the highest lifetime value?
-
-4. What percentage of customers are repeat buyers?
-
-5. Which age group generates the most revenue?
+3. Which age group generates the most revenue?
 
 ## Product Performance
-
-1. Which products have the highest sales volume?
 
 2. Which product categories have the highest order quantities?
 
@@ -55,21 +49,15 @@
 
 3. Compute running monthly revenue totals.
 
-4. Identify top 5 customers per month.
-
-5. Identify top-selling product category per month.
+4. Identify top-selling product category per month.
 
 ## Business Insight Questions
 
 1. What percentage of total revenue comes from the top 20% of customers?
 
-2. Identify customers who have not purchased in the last 3 months.
+2. Which product category should be prioritized for marketing?
 
-3. Which product category should be prioritized for marketing?
-
-4. Which age group has the highest repeat purchase rate?
-
-5. If the business wants to increase AOV, which category should be targeted?
+3. If the business wants to increase AOV, which category should be targeted?
 
 
 
