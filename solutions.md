@@ -539,3 +539,6 @@ ORDER BY avg_order_value DESC
 **Result Set:**
 product_category | avg_order_value | transaction_count | total_avenue
 --| --| --| -- | 
+Beauty      | 467.480000 | 307 | 143515.00 |
+Electronics | 458.790000 | 342 | 156905.00 |
+Clothing    | 443.250000 | 351 | 155580.00 |
