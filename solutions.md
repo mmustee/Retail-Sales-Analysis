@@ -520,6 +520,22 @@ Electronics | 156905.00 | 342 | 849 | 458.790000 | 181.900000 |
 Clothing    | 155580.00 | 351 | 894 | 443.250000 | 174.290000 |
 Beauty      | 143515.00 | 307 | 771 | 467.480000 | 184.060000 |
 
-4. Which age group has the highest repeat purchase rate?
 
-5. If the business wants to increase AOV, which category should be targeted?
+3. If the business wants to increase AOV, which category should be targeted?
+
+```sql
+SELECT
+    p.product_category,
+    ROUND(AVG(f.total_amount), 2) AS avg_order_value,
+    COUNT(f.transaction_id) AS transaction_count,
+    SUM(f.total_amount) AS total_revenue
+
+FROM dbo.fact_sales f
+JOIN dbo.dim_products p
+ON f.product_id = p.product_id
+GROUP BY p.product_category
+ORDER BY avg_order_value DESC
+```
+**Result Set:**
+product_category | avg_order_value | transaction_count | total_avenue
+--| --| --| -- | 
