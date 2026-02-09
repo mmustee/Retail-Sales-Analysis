@@ -195,7 +195,6 @@ year | quarter | total_revenue |
 
 ### Seasonal Patterns
 
-- Sales display moderate seasonality, with sales peaking at the end of the year at Q4 and plumetting at midway through the year at Q2. This displays an increase in demand of customers towards the end of the year, likey due to the holiday expenditure. Nevertheless, there does not seem to be a regular seasonal trend between months or quarters which means that seasonal changes do not significantly influence sales.
 # Customer Analytics
 
 1. How many unique customers have made purchases?
