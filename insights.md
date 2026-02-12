@@ -20,6 +20,18 @@ This project analyzes retail transaction data using a SQL Server star schema to 
 
 ## Time Trends
 - Sales exhibit moderate seasonality, with revenue peaking in Q4 and dipping in Q2. This suggests stronger customer demand toward the end of the year, potentially influenced by holiday-related spending and promotional activity. However, overall sales remain relatively stable across the remaining quarters, indicating that seasonality has a limited but noticeable impact on revenue performance.
+- The largest month-over-month revenue increase occurs in:
+October 2023
+
++97.2% MoM growth
+This sharp increase follows a weaker performance in September, indicating a strong rebound rather than continuous exponential growth.
+- The steepest monthly decline was recorded at:
+
+−36.1% MoM decrease
+
+This decline suggests some mid-year softening in demand, although overall sales remain relatively stable outside the Q4 surge.
+
+
   
 ## Recommendations
 
