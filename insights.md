@@ -26,7 +26,7 @@ This project analyzes retail transaction data using a SQL Server star schema to 
 This sharp increase follows a weaker performance in September, indicating a strong rebound rather than continuous exponential growth.
   - The steepest monthly decline was recorded at:
 
-− 36.1% MoM decrease, this decline suggests some mid-year softening in demand, although overall sales remain relatively stable outside the Q4 surge.
+- 36.1% MoM decrease, this decline suggests some mid-year softening in demand, although overall sales remain relatively stable outside the Q4 surge.
 
 
   
