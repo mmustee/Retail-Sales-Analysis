@@ -1,4 +1,4 @@
-#Introdcution
+# Introduction
 This project uses a star schema model with one fact table (fact_sales) and three dimension tables ( dim_customers, dim_dates, dim_products)
 
 ## Fact_Sales
