@@ -14,7 +14,7 @@ This project analyzes retail transaction data using a SQL Server star schema to 
 - The 46–60 age group represents the largest proportion of customers and also generates the highest total revenue among all demographics. This indicates that mid-to-late career consumers form the business’s most valuable customer segment. Targeted retention strategies and tailored marketing campaigns aimed at this demographic could help maximize revenue and strengthen long-term customer value
 
 ## Product Insights
-- Electronics should be prioritized for marketing because it generates the highest total revenue and maintains strong transaction volume, indicating proven customer demand. Targeted campaigns could further scale the category’s contribution to overall sales
+- Electronics contributes the largest share of revenue (£156.9K), making it the primary category for scaling marketing investment.
 - Beauty products show the highest average order value, suggesting premium purchasing behavior. Marketing investment could expand adoption and increase high-margin revenue
 - Electronics is the current revenue leader, while Beauty products represent a high-value growth opportunity
 
