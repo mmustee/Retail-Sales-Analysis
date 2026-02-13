@@ -1,5 +1,7 @@
-![](dashboard/screenshots/Executive Summary.png)
-
+![](dashboard/screenshots/ExecutiveSummary.png)
+![](dashboard/screenshots/CustomerInsights.png)
+![](dashboard/screenshots/ProductPerformance.png)
+![](dashboard/screenshots/SalesTrend.png)
 ## Table Of Contents
   - [Introduction](#introduction)
 
