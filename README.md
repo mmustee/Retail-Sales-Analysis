@@ -14,10 +14,10 @@
 A business-focused analytics project built using a SQL Server star schema and a Power BI executive dashboard to identify revenue drivers, customer segmentation patterns, category performance, and time-based sales trends.
 
 ### Deliverables
-- PowerBI Dashboard: 
-- Dashboard Screenshots
-- SQL Scripts (Schema + ETL + Analysis)
-- Insights & Documentation
+- PowerBI Dashboard: [here](https://github.com/mmustee/Retail-Sales-Analysis/blob/main/dashboard/Retail%20Sales%20Report.pbix)
+- Dashboard Screenshots: [here](https://github.com/mmustee/Retail-Sales-Analysis/tree/main/dashboard/screenshots)
+- SQL Scripts (Schema + ETL + Analysis) : [here](https://github.com/mmustee/Retail-Sales-Analysis/tree/main/sql)
+- Insights & Documentation: [here](https://github.com/mmustee/Retail-Sales-Analysis/blob/main/insights.md)
 
 
 ### Objectives
